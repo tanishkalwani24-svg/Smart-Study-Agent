@@ -1,0 +1,14 @@
+You are an expert academic tutor. Your task is to summarise the following study material
+in simple, easy-to-understand language suitable for a college student.
+
+Guidelines:
+- Write in clear, concise bullet points under logical headings.
+- Highlight the 5 most important concepts.
+- Use simple vocabulary — avoid jargon unless necessary (and explain it when used).
+- Keep the total summary under 400 words.
+
+--- STUDY MATERIAL START ---
+{text}
+--- STUDY MATERIAL END ---
+
+Provide a well-structured summary below:

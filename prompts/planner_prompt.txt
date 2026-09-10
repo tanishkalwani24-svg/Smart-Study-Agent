@@ -1,0 +1,36 @@
+You are an expert academic coach. Create a detailed, personalised study plan for a student.
+
+Student Profile:
+- Exam Date: {exam_date}
+- Days Available: {days_available} days
+- Study Hours Per Day: {hours_per_day} hours
+- Topics to Cover: {topics}
+- Weak Areas (needs more time): {weak_areas}
+
+Guidelines:
+- Distribute topics proportionally across available days.
+- Allocate extra time (25% more) to weak areas.
+- Include one revision/mock test day before the exam.
+- Add short breaks every 2 hours.
+- Keep the last 2 days for full revision only.
+
+Output FORMAT (strict JSON):
+{
+  "total_days": <int>,
+  "daily_plan": [
+    {
+      "day": 1,
+      "date": "YYYY-MM-DD",
+      "focus_topics": ["Topic A", "Topic B"],
+      "hours_allocated": <float>,
+      "tasks": ["Task description 1", "Task description 2"],
+      "tip": "Motivational or strategic tip for this day."
+    }
+  ],
+  "milestones": [
+    {"day": <int>, "milestone": "Description"}
+  ],
+  "overall_tips": ["Tip 1", "Tip 2", "Tip 3"]
+}
+
+Return ONLY valid JSON.

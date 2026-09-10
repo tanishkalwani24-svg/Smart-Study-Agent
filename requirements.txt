@@ -1,0 +1,16 @@
+ibm-watsonx-ai
+streamlit
+chromadb
+langchain
+langchain-community
+langchain-ibm
+PyMuPDF
+pytesseract
+Pillow
+python-dotenv
+pandas
+plotly
+httpx
+pydantic
+sentence-transformers
+tiktoken

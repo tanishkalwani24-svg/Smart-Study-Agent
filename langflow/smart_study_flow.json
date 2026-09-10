@@ -1,0 +1,183 @@
+{
+  "name": "Smart Study Generator Agent",
+  "description": "Multi-agent study assistant using IBM Granite via watsonx.ai",
+  "nodes": [
+    {
+      "id": "file_upload",
+      "type": "FileUpload",
+      "label": "Document Upload",
+      "description": "Accepts PDF, TXT, MD, PNG, JPG files",
+      "config": {
+        "accepted_types": ["pdf", "txt", "md", "png", "jpg", "jpeg"],
+        "max_size_mb": 50
+      },
+      "position": { "x": 50, "y": 200 }
+    },
+    {
+      "id": "doc_loader",
+      "type": "CustomComponent",
+      "label": "Document Loader",
+      "description": "Extracts text from PDFs, images (OCR), and plain text",
+      "code": "core/document_loader.py::load_document",
+      "inputs": ["file_upload"],
+      "position": { "x": 300, "y": 200 }
+    },
+    {
+      "id": "chunker",
+      "type": "TextSplitter",
+      "label": "Text Chunker",
+      "description": "Splits document into 512-char overlapping chunks",
+      "config": {
+        "chunk_size": 512,
+        "chunk_overlap": 64,
+        "splitter": "character"
+      },
+      "inputs": ["doc_loader"],
+      "position": { "x": 550, "y": 200 }
+    },
+    {
+      "id": "vector_store",
+      "type": "Chroma",
+      "label": "ChromaDB Vector Store",
+      "description": "Stores embeddings for RAG retrieval",
+      "config": {
+        "collection_name": "study_docs",
+        "embedding_model": "ibm/slate-125m-english-rtrvr",
+        "persist_directory": "./chroma_db"
+      },
+      "inputs": ["chunker"],
+      "position": { "x": 800, "y": 200 }
+    },
+    {
+      "id": "watsonx_llm",
+      "type": "WatsonxLLM",
+      "label": "IBM Granite LLM",
+      "description": "IBM Granite 13B Instruct via watsonx.ai",
+      "config": {
+        "model_id": "ibm/granite-13b-instruct-v2",
+        "url": "${WATSONX_URL}",
+        "api_key": "${WATSONX_API_KEY}",
+        "project_id": "${WATSONX_PROJECT_ID}",
+        "max_new_tokens": 1024,
+        "temperature": 0.7,
+        "decoding_method": "greedy"
+      },
+      "position": { "x": 800, "y": 400 }
+    },
+    {
+      "id": "summary_agent",
+      "type": "LLMChain",
+      "label": "Summary Agent",
+      "description": "Generates chapter summaries in simple language",
+      "config": {
+        "prompt_template": "prompts/summary_prompt.txt",
+        "llm": "watsonx_llm",
+        "input_variables": ["text"]
+      },
+      "inputs": ["doc_loader", "watsonx_llm"],
+      "position": { "x": 1100, "y": 50 }
+    },
+    {
+      "id": "quiz_agent",
+      "type": "LLMChain",
+      "label": "Quiz Generator Agent",
+      "description": "Creates MCQ quizzes with answer keys",
+      "config": {
+        "prompt_template": "prompts/quiz_prompt.txt",
+        "llm": "watsonx_llm",
+        "input_variables": ["text", "num_questions"],
+        "output_parser": "JSONOutputParser"
+      },
+      "inputs": ["doc_loader", "watsonx_llm"],
+      "position": { "x": 1100, "y": 200 }
+    },
+    {
+      "id": "flashcard_agent",
+      "type": "LLMChain",
+      "label": "Flashcard Agent",
+      "description": "Generates term-definition flashcard pairs",
+      "config": {
+        "prompt_template": "prompts/flashcard_prompt.txt",
+        "llm": "watsonx_llm",
+        "input_variables": ["text", "num_cards"],
+        "output_parser": "JSONOutputParser"
+      },
+      "inputs": ["doc_loader", "watsonx_llm"],
+      "position": { "x": 1100, "y": 350 }
+    },
+    {
+      "id": "planner_agent",
+      "type": "LLMChain",
+      "label": "Study Planner Agent",
+      "description": "Builds personalised study schedule",
+      "config": {
+        "prompt_template": "prompts/planner_prompt.txt",
+        "llm": "watsonx_llm",
+        "input_variables": ["exam_date", "days_available", "hours_per_day", "topics", "weak_areas"],
+        "output_parser": "JSONOutputParser"
+      },
+      "inputs": ["watsonx_llm"],
+      "position": { "x": 1100, "y": 500 }
+    },
+    {
+      "id": "rag_retriever",
+      "type": "VectorStoreRetriever",
+      "label": "RAG Retriever",
+      "description": "Fetches top-k relevant chunks for Q&A",
+      "config": {
+        "vector_store": "vector_store",
+        "k": 4
+      },
+      "inputs": ["vector_store"],
+      "position": { "x": 1100, "y": 650 }
+    },
+    {
+      "id": "qa_chain",
+      "type": "RetrievalQA",
+      "label": "Q&A Chain (RAG)",
+      "description": "Answers questions using retrieved context + Granite",
+      "config": {
+        "llm": "watsonx_llm",
+        "retriever": "rag_retriever",
+        "chain_type": "stuff",
+        "prompt_template": "You are a helpful academic assistant. Answer using ONLY the context below.\n\nContext: {context}\n\nQuestion: {question}\n\nAnswer:"
+      },
+      "inputs": ["rag_retriever", "watsonx_llm"],
+      "position": { "x": 1400, "y": 650 }
+    },
+    {
+      "id": "streamlit_output",
+      "type": "StreamlitOutput",
+      "label": "Streamlit Dashboard",
+      "description": "Renders results in the Streamlit frontend",
+      "inputs": ["summary_agent", "quiz_agent", "flashcard_agent", "planner_agent", "qa_chain"],
+      "position": { "x": 1700, "y": 350 }
+    }
+  ],
+  "edges": [
+    { "source": "file_upload",     "target": "doc_loader" },
+    { "source": "doc_loader",      "target": "chunker" },
+    { "source": "chunker",         "target": "vector_store" },
+    { "source": "doc_loader",      "target": "summary_agent" },
+    { "source": "doc_loader",      "target": "quiz_agent" },
+    { "source": "doc_loader",      "target": "flashcard_agent" },
+    { "source": "watsonx_llm",     "target": "summary_agent" },
+    { "source": "watsonx_llm",     "target": "quiz_agent" },
+    { "source": "watsonx_llm",     "target": "flashcard_agent" },
+    { "source": "watsonx_llm",     "target": "planner_agent" },
+    { "source": "watsonx_llm",     "target": "qa_chain" },
+    { "source": "vector_store",    "target": "rag_retriever" },
+    { "source": "rag_retriever",   "target": "qa_chain" },
+    { "source": "summary_agent",   "target": "streamlit_output" },
+    { "source": "quiz_agent",      "target": "streamlit_output" },
+    { "source": "flashcard_agent", "target": "streamlit_output" },
+    { "source": "planner_agent",   "target": "streamlit_output" },
+    { "source": "qa_chain",        "target": "streamlit_output" }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "created_by": "Smart Study Generator Agent",
+    "ibm_tech": ["watsonx.ai", "IBM Granite", "IBM Langflow"],
+    "problem_statement": 13
+  }
+}

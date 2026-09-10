@@ -1,0 +1,61 @@
+Operating Systems — Chapter 3: Process Management
+
+A process is an instance of a program in execution. It includes the program code (text section),
+current activity (program counter and registers), stack (temporary data), data section (global variables),
+and heap (dynamically allocated memory).
+
+Process States
+A process can be in one of five states:
+1. New: The process is being created.
+2. Running: Instructions are being executed.
+3. Waiting: The process is waiting for an event (e.g., I/O completion).
+4. Ready: The process is waiting to be assigned to a processor.
+5. Terminated: The process has finished execution.
+
+Process Control Block (PCB)
+Each process is represented by a PCB, which contains:
+- Process state
+- Program counter
+- CPU registers
+- CPU scheduling information
+- Memory management information
+- Accounting information
+- I/O status information
+
+Threads
+A thread is the basic unit of CPU utilization. A process can have multiple threads sharing
+the same code, data, and OS resources. Multithreading improves responsiveness, resource sharing,
+economy, and scalability.
+
+CPU Scheduling
+CPU scheduling selects a process from the ready queue and allocates the CPU to it.
+Scheduling algorithms include:
+- FCFS (First-Come, First-Served): Non-preemptive; simple but poor average wait time.
+- SJF (Shortest Job First): Optimal average wait time but requires knowledge of burst time.
+- Round Robin: Each process gets a fixed time quantum; good for time-sharing.
+- Priority Scheduling: Higher priority processes run first; may cause starvation.
+
+Deadlock
+A deadlock is a situation where a set of processes are blocked because each process is holding
+a resource and waiting for a resource held by another process.
+
+Conditions for Deadlock (Coffman Conditions):
+1. Mutual Exclusion: Only one process can use a resource at a time.
+2. Hold and Wait: A process holds at least one resource and is waiting for additional resources.
+3. No Preemption: Resources cannot be forcibly taken from a process.
+4. Circular Wait: A set of processes P0, P1, ..., Pn exist such that P0 waits for P1, P1 waits
+   for P2, ..., and Pn waits for P0.
+
+Deadlock Prevention, Avoidance, and Detection
+- Prevention: Ensure that at least one of the four conditions cannot hold.
+- Avoidance: Use Banker's Algorithm to grant resources only if safe state is maintained.
+- Detection and Recovery: Allow deadlocks to occur, detect them, and recover by terminating
+  processes or pre-empting resources.
+
+Memory Management
+The operating system is responsible for managing memory:
+- Contiguous allocation: Each process occupies a single contiguous section of memory.
+- Paging: Physical memory divided into fixed-size frames; logical memory into pages.
+- Segmentation: Memory divided into variable-size segments based on logical structure.
+- Virtual Memory: Allows execution of processes not completely in physical memory
+  using demand paging and the concept of a page fault.

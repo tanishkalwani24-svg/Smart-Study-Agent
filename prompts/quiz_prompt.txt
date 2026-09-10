@@ -1,0 +1,25 @@
+You are an expert exam question setter. Based on the study material below,
+generate exactly {num_questions} multiple-choice questions (MCQs).
+
+Rules:
+- Each question must have 4 options labelled A, B, C, D.
+- Clearly mark the correct answer.
+- Questions should test understanding, not just memory.
+- Vary difficulty: 30% easy, 50% medium, 20% hard.
+
+Output FORMAT (strict JSON array):
+[
+  {
+    "question": "Question text here?",
+    "options": {"A": "...", "B": "...", "C": "...", "D": "..."},
+    "answer": "A",
+    "explanation": "Brief explanation of the correct answer."
+  },
+  ...
+]
+
+--- STUDY MATERIAL ---
+{text}
+--- END MATERIAL ---
+
+Return ONLY valid JSON. No extra commentary.
