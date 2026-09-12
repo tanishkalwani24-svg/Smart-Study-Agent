@@ -14,3 +14,6 @@ httpx
 pydantic
 sentence-transformers
 tiktoken
+groq
+openai
+reportlab

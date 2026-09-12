@@ -2,11 +2,24 @@
 core/watsonx_client.py
 AI client wrapper — supports Groq, Grok (xAI), and IBM watsonx.ai.
 Priority: Groq → Grok → IBM watsonx.ai → error message.
+Works both locally (.env) and on Streamlit Cloud (st.secrets).
 """
 import os
 from dotenv import load_dotenv
 
 load_dotenv()
+
+
+def _secret(key: str, default: str = "") -> str:
+    """Read from st.secrets first (Streamlit Cloud), then os.environ."""
+    try:
+        import streamlit as st
+        val = st.secrets.get(key, "")
+        if val:
+            return str(val).strip()
+    except Exception:
+        pass
+    return os.getenv(key, default).strip()
 
 
 class WatsonxClient:
@@ -38,13 +51,13 @@ class WatsonxClient:
 
     def _try_groq(self) -> bool:
         """Attempt to set up the Groq fast-inference client."""
-        api_key = os.getenv("GROQ_API_KEY", "").strip()
+        api_key = _secret("GROQ_API_KEY")
         if not api_key:
             return False
         try:
             from groq import Groq
             self._client  = Groq(api_key=api_key)
-            self._model   = os.getenv("GROQ_MODEL", "compound-beta")
+            self._model   = _secret("GROQ_MODEL") or "compound-beta"
             self._ready   = True
             self._backend = "groq"
             return True

@@ -33,7 +33,12 @@ def _get_embedder():
 
     # Only try IBM embeddings if BOTH keys are present, non-placeholder,
     # and Groq is NOT the active backend (no point calling IBM when using Groq)
-    groq_key = os.getenv("GROQ_API_KEY", "").strip()
+    try:
+        import streamlit as st
+        groq_key = st.secrets.get("GROQ_API_KEY", "") or os.getenv("GROQ_API_KEY", "")
+    except Exception:
+        groq_key = os.getenv("GROQ_API_KEY", "")
+    groq_key = groq_key.strip()
     if api_key and project_id and "your_" not in api_key and not groq_key:
         try:
             from langchain_ibm import WatsonxEmbeddings
