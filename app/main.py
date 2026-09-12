@@ -49,36 +49,38 @@ st.markdown("### 🧭 What would you like to do?")
 
 row1 = st.columns(4)
 page_cards = [
-    ("fc-blue",   "📤 Upload Document",      "Upload PDFs, notes, or images",           "pages/01_upload.py",    "📤"),
-    ("fc-purple", "📝 Chapter Summary",      "AI-generated summaries of your material", "pages/02_summary.py",   "📝"),
-    ("fc-green",  "🃏 Flashcards",           "Auto-created term-definition cards",      "pages/03_flashcards.py","🃏"),
-    ("fc-orange", "❓ Quiz Generator",       "MCQ quizzes with instant scoring",        "pages/04_quiz.py",      "❓"),
+    ("fc-blue",   "📤 Upload Document",      "Upload PDFs, notes, or images",           "Upload"),
+    ("fc-purple", "📝 Chapter Summary",      "AI-generated summaries of your material", "Summary"),
+    ("fc-green",  "🃏 Flashcards",           "Auto-created term-definition cards",      "Flashcards"),
+    ("fc-orange", "❓ Quiz Generator",       "MCQ quizzes with instant scoring",        "Quiz"),
 ]
-for col, (colour, label, desc, page, icon) in zip(row1, page_cards):
+for col, (colour, label, desc, slug) in zip(row1, page_cards):
     col.markdown(
+        f'<a href="/{slug}" target="_self" class="fcard-link">'
         f'<div class="fcard {colour}">'
         f'<b>{label}</b>'
         f'<small>{desc}</small>'
-        f'</div>',
+        f'</div>'
+        f'</a>',
         unsafe_allow_html=True,
     )
-    col.page_link(page, label="Open →", icon=icon)
 
 row2 = st.columns(4)
 page_cards2 = [
-    ("fc-pink",   "💬 Ask a Question (RAG)", "Chat with your documents via RAG",        "pages/05_qa.py",        "💬"),
-    ("fc-teal",   "📅 Study Planner",        "Personalised day-by-day study schedule",  "pages/06_planner.py",   "📅"),
-    ("fc-indigo", "📊 Progress Dashboard",   "Track milestones and weak areas",         "pages/07_dashboard.py", "📊"),
+    ("fc-pink",   "💬 Ask a Question (RAG)", "Chat with your documents via RAG",        "Qa"),
+    ("fc-teal",   "📅 Study Planner",        "Personalised day-by-day study schedule",  "Planner"),
+    ("fc-indigo", "📊 Progress Dashboard",   "Track milestones and weak areas",         "Dashboard"),
 ]
-for col, (colour, label, desc, page, icon) in zip(row2, page_cards2):
+for col, (colour, label, desc, slug) in zip(row2, page_cards2):
     col.markdown(
+        f'<a href="/{slug}" target="_self" class="fcard-link">'
         f'<div class="fcard {colour}">'
         f'<b>{label}</b>'
         f'<small>{desc}</small>'
-        f'</div>',
+        f'</div>'
+        f'</a>',
         unsafe_allow_html=True,
     )
-    col.page_link(page, label="Open →", icon=icon)
 
 st.markdown("---")
 st.markdown(
