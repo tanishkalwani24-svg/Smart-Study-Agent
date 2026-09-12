@@ -1,20 +1,27 @@
 """
 core/session_state.py
-Streamlit session-state helpers to avoid repeated re-initialisation.
+Streamlit session-state helpers.
+VectorStore is created once per server process via st.cache_resource,
+so the 40-second model-load only happens on the very first page hit.
 """
 import streamlit as st
-from core.vector_store import VectorStore
+
+
+@st.cache_resource(show_spinner="Loading AI vector store…")
+def _get_vector_store():
+    """Create VectorStore once per server process and cache it."""
+    from core.vector_store import VectorStore
+    return VectorStore()
 
 
 def init_session():
     """Initialise all required session-state keys on first load."""
     defaults = {
-        "uploaded_docs":        [],     # list of {"name": str, "text": str, "chunks": int}
-        "vector_store":         None,   # VectorStore instance
-        "summaries":            {},     # doc_name -> summary text
-        "flashcards":           {},     # doc_name -> list[{"term":, "definition":}]
-        "quizzes":              {},     # doc_name -> list[{"question":, "options":[], "answer":}]
-        "study_plan":           None,   # structured study plan dict
+        "uploaded_docs":        [],
+        "summaries":            {},
+        "flashcards":           {},
+        "quizzes":              {},
+        "study_plan":           None,
         "progress": {
             "completed":  [],
             "weak_areas": [],
@@ -23,15 +30,11 @@ def init_session():
         "exam_date":            None,
         "study_hours_per_day":  2,
         "topics":               [],
-        "qa_history":           [],     # list[{"q": str, "a": str}]
+        "qa_history":           [],
     }
     for key, val in defaults.items():
         if key not in st.session_state:
             st.session_state[key] = val
-
-    # Lazy-init persistent vector store
-    if st.session_state["vector_store"] is None:
-        st.session_state["vector_store"] = VectorStore()
 
     # Show credential status banner
     _show_credential_banner()
@@ -55,6 +58,6 @@ def _show_credential_banner():
         )
 
 
-def get_vs() -> VectorStore:
-    """Return the shared VectorStore instance."""
-    return st.session_state["vector_store"]
+def get_vs():
+    """Return the shared cached VectorStore instance."""
+    return _get_vector_store()
