@@ -49,12 +49,12 @@ st.markdown("### 🧭 What would you like to do?")
 
 row1 = st.columns(4)
 page_cards = [
-    ("fc-blue",   "📤 Upload Document",      "Upload PDFs, notes, or images"),
-    ("fc-purple", "📝 Chapter Summary",      "AI-generated summaries of your material"),
-    ("fc-green",  "🃏 Flashcards",           "Auto-created term-definition cards"),
-    ("fc-orange", "❓ Quiz Generator",       "MCQ quizzes with instant scoring"),
+    ("fc-blue",   "📤 Upload Document",      "Upload PDFs, notes, or images",           "pages/01_upload.py",    "📤"),
+    ("fc-purple", "📝 Chapter Summary",      "AI-generated summaries of your material", "pages/02_summary.py",   "📝"),
+    ("fc-green",  "🃏 Flashcards",           "Auto-created term-definition cards",      "pages/03_flashcards.py","🃏"),
+    ("fc-orange", "❓ Quiz Generator",       "MCQ quizzes with instant scoring",        "pages/04_quiz.py",      "❓"),
 ]
-for col, (colour, label, desc) in zip(row1, page_cards):
+for col, (colour, label, desc, page, icon) in zip(row1, page_cards):
     col.markdown(
         f'<div class="fcard {colour}">'
         f'<b>{label}</b>'
@@ -62,14 +62,15 @@ for col, (colour, label, desc) in zip(row1, page_cards):
         f'</div>',
         unsafe_allow_html=True,
     )
+    col.page_link(page, label="Open →", icon=icon)
 
 row2 = st.columns(4)
 page_cards2 = [
-    ("fc-pink",   "💬 Ask a Question (RAG)", "Chat with your documents via RAG"),
-    ("fc-teal",   "📅 Study Planner",        "Personalised day-by-day study schedule"),
-    ("fc-indigo", "📊 Progress Dashboard",   "Track milestones and weak areas"),
+    ("fc-pink",   "💬 Ask a Question (RAG)", "Chat with your documents via RAG",        "pages/05_qa.py",        "💬"),
+    ("fc-teal",   "📅 Study Planner",        "Personalised day-by-day study schedule",  "pages/06_planner.py",   "📅"),
+    ("fc-indigo", "📊 Progress Dashboard",   "Track milestones and weak areas",         "pages/07_dashboard.py", "📊"),
 ]
-for col, (colour, label, desc) in zip(row2, page_cards2):
+for col, (colour, label, desc, page, icon) in zip(row2, page_cards2):
     col.markdown(
         f'<div class="fcard {colour}">'
         f'<b>{label}</b>'
@@ -77,6 +78,7 @@ for col, (colour, label, desc) in zip(row2, page_cards2):
         f'</div>',
         unsafe_allow_html=True,
     )
+    col.page_link(page, label="Open →", icon=icon)
 
 st.markdown("---")
 st.markdown(

@@ -255,6 +255,26 @@ hr { border-color: #2d2d4e !important; }
 
 /* ── Plotly chart backgrounds ── */
 .js-plotly-plot .plotly { background: transparent !important; }
+
+/* ── page_link buttons under feature cards ── */
+[data-testid="stPageLink"] a {
+    display: inline-block;
+    margin-top: .25rem;
+    padding: .3rem .9rem;
+    border-radius: 8px;
+    background: rgba(255,255,255,.1);
+    color: #e2e8f0 !important;
+    font-size: .82rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,.18);
+    transition: background .15s, border-color .15s;
+}
+[data-testid="stPageLink"] a:hover {
+    background: rgba(255,255,255,.2);
+    border-color: rgba(255,255,255,.35);
+    color: #fff !important;
+}
 </style>
 """
 
