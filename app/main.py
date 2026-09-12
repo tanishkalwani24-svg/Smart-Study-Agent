@@ -49,16 +49,17 @@ st.markdown("### 🧭 What would you like to do?")
 
 row1 = st.columns(4)
 page_cards = [
-    ("fc-blue",   "📤 Upload Document",      "Upload PDFs, notes, or images",           "Upload"),
-    ("fc-purple", "📝 Chapter Summary",      "AI-generated summaries of your material", "Summary"),
-    ("fc-green",  "🃏 Flashcards",           "Auto-created term-definition cards",      "Flashcards"),
-    ("fc-orange", "❓ Quiz Generator",       "MCQ quizzes with instant scoring",        "Quiz"),
+    ("fc-blue",   "📤 Upload Document",      "Upload PDFs, notes, or images",           "upload"),
+    ("fc-purple", "📝 Chapter Summary",      "AI-generated summaries of your material", "summary"),
+    ("fc-green",  "🃏 Flashcards",           "Auto-created term-definition cards",      "flashcards"),
+    ("fc-orange", "❓ Quiz Generator",       "MCQ quizzes with instant scoring",        "quiz"),
 ]
 for col, (colour, label, desc, slug) in zip(row1, page_cards):
     col.markdown(
         f'<a href="/{slug}" target="_self" class="fcard-link">'
         f'<div class="fcard {colour}">'
         f'<b>{label}</b>'
+        f'<br>'
         f'<small>{desc}</small>'
         f'</div>'
         f'</a>',
@@ -67,15 +68,16 @@ for col, (colour, label, desc, slug) in zip(row1, page_cards):
 
 row2 = st.columns(4)
 page_cards2 = [
-    ("fc-pink",   "💬 Ask a Question (RAG)", "Chat with your documents via RAG",        "Qa"),
-    ("fc-teal",   "📅 Study Planner",        "Personalised day-by-day study schedule",  "Planner"),
-    ("fc-indigo", "📊 Progress Dashboard",   "Track milestones and weak areas",         "Dashboard"),
+    ("fc-pink",   "💬 Ask a Question (RAG)", "Chat with your documents via RAG",        "qa"),
+    ("fc-teal",   "📅 Study Planner",        "Personalised day-by-day study schedule",  "planner"),
+    ("fc-indigo", "📊 Progress Dashboard",   "Track milestones and weak areas",         "dashboard"),
 ]
 for col, (colour, label, desc, slug) in zip(row2, page_cards2):
     col.markdown(
         f'<a href="/{slug}" target="_self" class="fcard-link">'
         f'<div class="fcard {colour}">'
         f'<b>{label}</b>'
+        f'<br>'
         f'<small>{desc}</small>'
         f'</div>'
         f'</a>',
