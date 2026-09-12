@@ -8,6 +8,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")
 import streamlit as st
 from core.session_state import init_session
 from app.components.styles import inject_css
+from app.components.sidebar import render_sidebar
 
 st.set_page_config(
     page_title="Smart Study Generator Agent",
@@ -18,6 +19,7 @@ st.set_page_config(
 
 inject_css()
 init_session()
+render_sidebar()
 
 # ── Hero Banner ───────────────────────────────────────────────────────────────
 st.markdown(

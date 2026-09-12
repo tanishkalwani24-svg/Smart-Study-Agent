@@ -39,6 +39,13 @@ p, span, li, label, div {
     color: #e2e8f0 !important;
 }
 
+/* ── Hide Streamlit's default auto-generated page nav ── */
+[data-testid="stSidebarNav"],
+[data-testid="stSidebarNavItems"],
+[data-testid="stSidebarNavSeparator"] {
+    display: none !important;
+}
+
 /* ── Sidebar background ── */
 [data-testid="stSidebar"],
 [data-testid="stSidebar"] > div,
