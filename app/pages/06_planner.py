@@ -10,9 +10,11 @@ from datetime import date, timedelta
 from core.session_state import init_session
 from agents.planner_agent import StudyPlannerAgent
 from app.components.styles import inject_css
+from app.components.sidebar import render_sidebar
 
 inject_css()
 init_session()
+render_sidebar()
 
 st.title("📅 Personalised Study Planner")
 st.markdown(

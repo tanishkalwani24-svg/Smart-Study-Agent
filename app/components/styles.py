@@ -39,27 +39,171 @@ p, span, li, label, div {
     color: #e2e8f0 !important;
 }
 
-/* ── Sidebar ── */
+/* ── Sidebar background ── */
 [data-testid="stSidebar"],
 [data-testid="stSidebar"] > div,
 [data-testid="stSidebar"] > div:first-child {
-    background: linear-gradient(180deg,#0a0a18 0%,#12122a 50%,#0f1b35 100%) !important;
-    border-right: 1px solid #2d2d4e !important;
+    background: linear-gradient(180deg,
+        #070714 0%,
+        #0d0d2b 30%,
+        #0a1628 60%,
+        #0d0d2b 100%) !important;
+    border-right: 1px solid rgba(99,102,241,.25) !important;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif !important;
 }
+
+/* ── Sidebar brand block ── */
+.sb-brand {
+    text-align: center;
+    padding: 1.4rem 0 1rem 0;
+}
+.sb-logo { font-size: 2.6rem; line-height: 1; margin-bottom: .4rem; }
+.sb-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: .5px;
+    background: linear-gradient(90deg, #818cf8, #38bdf8, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.sb-sub {
+    font-size: .72rem;
+    color: #475569 !important;
+    margin-top: .25rem;
+    letter-spacing: .4px;
+    -webkit-text-fill-color: #475569;
+}
+
+/* ── Sidebar section labels ── */
+.sb-section-label {
+    font-size: .65rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #475569 !important;
+    padding: .6rem .2rem .3rem .2rem;
+    text-transform: uppercase;
+}
+
+/* ── Sidebar nav links ── */
+[data-testid="stSidebar"] [data-testid="stPageLink"] a {
+    display: flex !important;
+    align-items: center !important;
+    gap: .5rem !important;
+    padding: .45rem .75rem !important;
+    margin: .1rem 0 !important;
+    border-radius: 10px !important;
+    font-size: .88rem !important;
+    font-weight: 500 !important;
+    color: #94a3b8 !important;
+    text-decoration: none !important;
+    transition: background .15s, color .15s !important;
+    border: 1px solid transparent !important;
+}
+[data-testid="stSidebar"] [data-testid="stPageLink"] a:hover {
+    background: rgba(99,102,241,.12) !important;
+    color: #c7d2fe !important;
+    border-color: rgba(99,102,241,.2) !important;
+}
+[data-testid="stSidebar"] [data-testid="stPageLink"][aria-current="page"] a,
+[data-testid="stSidebar"] [data-testid="stPageLink"] a[aria-current="page"] {
+    background: linear-gradient(90deg, rgba(99,102,241,.2), rgba(167,139,250,.15)) !important;
+    color: #a5b4fc !important;
+    border-color: rgba(99,102,241,.35) !important;
+    font-weight: 600 !important;
+}
+
+/* ── Sidebar divider ── */
+.sb-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(99,102,241,.3), transparent);
+    margin: .6rem 0;
+}
+
+/* ── Stats grid ── */
+.sb-stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .4rem;
+    margin: .4rem 0;
+}
+.sb-stat {
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(99,102,241,.15);
+    border-radius: 10px;
+    padding: .5rem .6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.sb-stat-val {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #818cf8 !important;
+    -webkit-text-fill-color: #818cf8;
+    line-height: 1;
+}
+.sb-stat-lbl {
+    font-size: .68rem;
+    color: #64748b !important;
+    -webkit-text-fill-color: #64748b;
+    margin-top: .15rem;
+}
+
+/* ── Important Questions ── */
+.sb-iq-item {
+    display: flex;
+    align-items: flex-start;
+    gap: .5rem;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(167,139,250,.18);
+    border-radius: 10px;
+    padding: .55rem .65rem;
+    margin: .35rem 0;
+    font-size: .8rem;
+    color: #cbd5e1 !important;
+    line-height: 1.45;
+}
+.sb-iq-num {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    color: #fff !important;
+    -webkit-text-fill-color: #fff;
+    font-size: .65rem;
+    font-weight: 700;
+    border-radius: 50%;
+    min-width: 1.3rem;
+    height: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: .05rem;
+    flex-shrink: 0;
+}
+.sb-iq-empty {
+    font-size: .78rem;
+    color: #475569 !important;
+    text-align: center;
+    padding: .75rem .5rem;
+    border: 1px dashed rgba(99,102,241,.2);
+    border-radius: 10px;
+    margin: .4rem 0;
+}
+
+/* ── Sidebar footer ── */
+.sb-footer {
+    font-size: .65rem;
+    color: #334155 !important;
+    text-align: center;
+    padding: .8rem 0 .5rem 0;
+    letter-spacing: .4px;
+}
+
+/* ── Legacy sidebar text fallback ── */
 [data-testid="stSidebar"] span,
 [data-testid="stSidebar"] p,
 [data-testid="stSidebar"] li,
-[data-testid="stSidebar"] a,
-[data-testid="stSidebar"] label,
-[data-testid="stSidebarNav"] a,
-[data-testid="stSidebarNavItems"] span {
-    color: #cbd5e1 !important;
-    font-weight: 500;
-}
-[data-testid="stSidebarNavItems"] a:hover span { color: #60a5fa !important; }
-[data-testid="stSidebarNavItems"] [aria-current="page"] span {
-    color: #818cf8 !important;
-    font-weight: 700;
+[data-testid="stSidebar"] label {
+    color: #94a3b8 !important;
 }
 
 /* ── Hero banner ── */

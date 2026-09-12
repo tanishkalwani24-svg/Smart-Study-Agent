@@ -11,9 +11,11 @@ import plotly.graph_objects as go
 import plotly.express as px
 from core.session_state import init_session
 from app.components.styles import inject_css
+from app.components.sidebar import render_sidebar
 
 inject_css()
 init_session()
+render_sidebar()
 
 st.title("📊 Progress Dashboard")
 st.markdown("Track your study milestones, identify weak areas, and celebrate progress.")

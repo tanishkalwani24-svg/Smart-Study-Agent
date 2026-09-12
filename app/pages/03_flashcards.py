@@ -9,9 +9,11 @@ import streamlit as st
 from core.session_state import init_session
 from agents.flashcard_agent import FlashcardAgent
 from app.components.styles import inject_css
+from app.components.sidebar import render_sidebar
 
 inject_css()
 init_session()
+render_sidebar()
 
 st.title("🃏 Flashcards")
 st.markdown(

@@ -9,9 +9,11 @@ import streamlit as st
 from core.session_state import init_session, get_vs
 from core.document_loader import load_document, chunk_text
 from app.components.styles import inject_css
+from app.components.sidebar import render_sidebar
 
 inject_css()
 init_session()
+render_sidebar()
 
 st.title("📤 Upload Study Material")
 st.markdown(
