@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ScamPay — India's #1 UPI & Digital Scam Detector</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-inner container">
+      <a href="index.html" class="logo">
+        <span class="logo-shield">🛡️</span>
+        <span class="logo-text">Scam<span class="accent">Pay</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <!-- Issue 7: standardised label (was "Scan Now") -->
+        <li><a href="scan.html">Scan Message Now</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="report.html">Report Scam</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" title="Toggle dark / light mode">🌙</button>
+        <button class="nav-toggle" id="navToggle" aria-label="Open menu">&#9776;</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <div class="hero-badge">🔒 Trusted by 50,000+ Indians</div>
+        <h1>Got a Suspicious<br/><span class="accent">Payment Message?</span></h1>
+        <p class="hero-sub">Paste any SMS, WhatsApp message, UPI ID, phone number, or link — ScamPay's AI engine detects scams in seconds before you lose money.</p>
+        <div class="hero-actions">
+          <a href="scan.html" class="btn btn-primary btn-lg">🔍 Scan Message Now</a>
+          <a href="#how" class="btn btn-outline btn-lg">See How It Works</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><span class="stat-num">2.3M+</span><span class="stat-label">Scans Done</span></div>
+          <div class="stat"><span class="stat-num">₹47Cr+</span><span class="stat-label">Fraud Prevented</span></div>
+          <div class="stat"><span class="stat-num">99.2%</span><span class="stat-label">Accuracy</span></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="phone-mock">
+          <div class="phone-screen">
+            <div class="mock-msg danger">
+              <div class="mock-sender">Unknown +91</div>
+              <div class="mock-body">Your KYC expired! Send ₹5000 to <b>verify@upi</b> now or account will be blocked. Share OTP: 9234</div>
+              <div class="mock-tag scam-tag">⚠️ SCAM DETECTED</div>
+            </div>
+            <div class="mock-score">
+              <div class="score-ring ring-red">88</div>
+              <div class="score-info">
+                <div class="score-label">Risk Score</div>
+                <div class="score-cat">UPI + OTP Scam</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCAM TYPES MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span>🚫 UPI Scam</span><span>🔑 OTP Fraud</span><span>📋 KYC Scam</span><span>🏆 Lottery Scam</span>
+      <span>📞 Fake Customer Care</span><span>💰 Investment Fraud</span><span>🎣 Phishing Links</span><span>💸 Refund Scam</span>
+      <span>🚫 UPI Scam</span><span>🔑 OTP Fraud</span><span>📋 KYC Scam</span><span>🏆 Lottery Scam</span>
+      <span>📞 Fake Customer Care</span><span>💰 Investment Fraud</span><span>🎣 Phishing Links</span><span>💸 Refund Scam</span>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <section class="section" id="how">
+    <div class="container">
+      <div class="section-header">
+        <h2>How ScamPay Works</h2>
+        <p>Three simple steps to protect yourself from digital fraud</p>
+      </div>
+      <div class="steps-grid">
+        <!-- Issue 6: replaced decorative 3D-style emoji with flat line-art emoji
+             to match the flat icon style used in the Scams We Detect section -->
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <div class="step-icon">📝</div>
+          <h3>Submit Content</h3>
+          <p>Paste your SMS/WhatsApp message, upload a screenshot, or enter a suspicious UPI ID, phone number, or URL.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <div class="step-icon">🔍</div>
+          <h3>AI Analysis</h3>
+          <p>Our engine extracts UPI IDs, keywords, links and runs them through 7 scam detection modules simultaneously.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <div class="step-icon">📋</div>
+          <h3>Risk Report</h3>
+          <p>Get an instant risk score (0–100), scam category, detailed reasons, and personalized safety advice.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCAM CATEGORIES -->
+  <section class="section section-alt" id="scams">
+    <div class="container">
+      <div class="section-header">
+        <h2>Scams We Detect</h2>
+        <p>ScamPay identifies 7+ types of digital financial fraud</p>
+      </div>
+      <div class="scam-grid">
+        <!-- Issue 4: h4 → h3 (previous heading is h2, so h3 is the correct next level) -->
+        <div class="scam-card"><div class="scam-icon">🔑</div><h3>OTP Scam</h3><p>Fraudsters trick you into sharing your One-Time Password to steal funds.</p></div>
+        <div class="scam-card"><div class="scam-icon">📋</div><h3>KYC Scam</h3><p>Fake KYC update requests demanding personal documents or payments.</p></div>
+        <div class="scam-card"><div class="scam-icon">💳</div><h3>UPI Fraud</h3><p>Collect requests, fake QR codes, and suspicious UPI payment links.</p></div>
+        <div class="scam-card"><div class="scam-icon">📞</div><h3>Fake Customer Care</h3><p>Impersonators of banks, PayTM, PhonePe, or NPCI support numbers.</p></div>
+        <div class="scam-card"><div class="scam-icon">🏆</div><h3>Lottery/Reward</h3><p>"You've won ₹10 lakh!" — fake prize scams asking for processing fees.</p></div>
+        <div class="scam-card"><div class="scam-icon">📈</div><h3>Investment Fraud</h3><p>Guaranteed high-return schemes on Telegram or WhatsApp groups.</p></div>
+        <div class="scam-card"><div class="scam-icon">🎣</div><h3>Phishing Links</h3><p>Malicious URLs mimicking bank or e-commerce login pages.</p></div>
+        <div class="scam-card"><div class="scam-icon">💸</div><h3>Refund Scam</h3><p>Fake refund agents asking you to scan a QR to "receive" money.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIVE DEMO TEASER -->
+  <section class="section cta-section">
+    <div class="container cta-inner">
+      <div class="cta-text">
+        <h2>Protect Yourself Right Now</h2>
+        <p>Don't wait until you're a victim. Verify any suspicious message instantly — it's free, private, and takes under 10 seconds.</p>
+        <!-- Issue 7: standardised label (was "Start Free Scan") -->
+        <a href="scan.html" class="btn btn-primary btn-lg">🔍 Scan Message Now</a>
+      </div>
+      <div class="cta-tips">
+        <div class="tip-card"><span class="tip-icon">⚠️</span><p>Never share your OTP or UPI PIN with anyone, not even bank officials.</p></div>
+        <div class="tip-card"><span class="tip-icon">🔗</span><p>Always verify payment links through the official app before clicking.</p></div>
+        <div class="tip-card"><span class="tip-icon">📞</span><p>Real banks never ask for money to "verify" your KYC or unblock account.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <h2>Real Stories, Real Savings</h2>
+        <p>Indians who used ScamPay before it was too late</p>
+      </div>
+      <div class="testimonials">
+        <div class="testimonial-card">
+          <div class="testi-quote">"I got a message saying my PayTM KYC expired and to send ₹499. ScamPay flagged it as a scam in 3 seconds. Saved me from losing money!"</div>
+          <div class="testi-author"><strong>Priya S.</strong>, Bangalore</div>
+          <div class="testi-score risk-red">Risk Score: 92 — Very High Risk ✅ Blocked</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testi-quote">"A fake HDFC customer care called me. I cross-checked the number on ScamPay and it showed Fake Customer Care scam. Didn't share anything!"</div>
+          <div class="testi-author"><strong>Rahul M.</strong>, Mumbai</div>
+          <div class="testi-score risk-orange">Risk Score: 76 — High Risk ✅ Avoided</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testi-quote">"WhatsApp message said I won ₹5 lakh in a lucky draw. ScamPay identified it as a Lottery Scam immediately. App is a lifesaver."</div>
+          <div class="testi-author"><strong>Anjali K.</strong>, Delhi</div>
+          <div class="testi-score risk-red">Risk Score: 95 — Very High Risk ✅ Blocked</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <div class="logo"><span>🛡️</span> <span class="logo-text">Scam<span class="accent">Pay</span></span></div>
+        <p>India's AI-powered scam detection platform protecting digital payments since 2024.</p>
+        <div class="footer-emergency">
+          <a href="tel:1930" class="emergency-btn">📞 1930 Cyber Helpline</a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <!-- Issue 5: h5 → h3 (previous heading in document is h2, h3 is correct next level) -->
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="scan.html">Scan Message</a></li>
+          <li><a href="dashboard.html">My Dashboard</a></li>
+          <li><a href="report.html">Report a Scam</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h3>Report Portals</h3>
+        <ul>
+          <li><a href="https://cybercrime.gov.in" target="_blank">Cyber Crime Portal</a></li>
+          <li><a href="https://sancharsaathi.gov.in/sfc/Home/sfc-complaint.jsp" target="_blank">Chakshu Portal</a></li>
+          <li><a href="tel:1930">1930 Helpline</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 ScamPay · Built for Hackathon · Not affiliated with any financial institution · <a href="#">Privacy</a></p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

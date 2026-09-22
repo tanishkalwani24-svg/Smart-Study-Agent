@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Report a Scam — ScamPay</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-inner container">
+      <a href="index.html" class="logo">
+        <span class="logo-shield">🛡️</span>
+        <span class="logo-text">Scam<span class="accent">Pay</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="scan.html">Scan Now</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="report.html" class="active">Report Scam</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" title="Toggle dark / light mode">🌙</button>
+        <button class="nav-toggle" id="navToggle" aria-label="Open menu">&#9776;</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>🚨 Report a Scam</h1>
+      <p>Help protect other Indians — report fraud to official portals</p>
+    </div>
+  </div>
+
+  <section class="container report-section">
+
+    <!-- EMERGENCY BANNER -->
+    <div class="emergency-banner">
+      <div class="emergency-icon">🆘</div>
+      <div class="emergency-text">
+        <b>Lost money to a scam? Act immediately!</b>
+        <p>Call <strong>1930</strong> (Cyber Crime Helpline) within the first hour to maximize chances of fund recovery.</p>
+      </div>
+      <a href="tel:1930" class="btn btn-danger">📞 Call 1930 Now</a>
+    </div>
+
+    <!-- REPORT PORTALS -->
+    <h2 class="section-title">Official Reporting Portals</h2>
+    <div class="portals-grid">
+      <div class="portal-card">
+        <div class="portal-logo">🏛️</div>
+        <h3>National Cyber Crime Reporting Portal</h3>
+        <p>Government of India's official portal for reporting cyber crimes including financial fraud.</p>
+        <div class="portal-steps">
+          <div class="portal-step"><span>1</span> Visit the portal</div>
+          <div class="portal-step"><span>2</span> Click "Report Cyber Crime"</div>
+          <div class="portal-step"><span>3</span> Fill complaint form</div>
+          <div class="portal-step"><span>4</span> Note complaint number</div>
+        </div>
+        <a href="https://cybercrime.gov.in" target="_blank" class="btn btn-primary">Visit Portal →</a>
+      </div>
+
+      <div class="portal-card">
+        <div class="portal-logo">📡</div>
+        <h3>Chakshu Portal (TRAI)</h3>
+        <p>Report suspected fraud communications — SMS, calls, WhatsApp messages to TRAI's Sanchar Saathi.</p>
+        <div class="portal-steps">
+          <div class="portal-step"><span>1</span> Open Chakshu Portal</div>
+          <div class="portal-step"><span>2</span> Select communication type</div>
+          <div class="portal-step"><span>3</span> Enter suspect number/details</div>
+          <div class="portal-step"><span>4</span> Submit report</div>
+        </div>
+        <a href="https://sancharsaathi.gov.in/sfc/Home/sfc-complaint.jsp" target="_blank" class="btn btn-primary">Report on Chakshu →</a>
+      </div>
+
+      <div class="portal-card">
+        <div class="portal-logo">📞</div>
+        <h3>1930 — Cyber Fraud Helpline</h3>
+        <p>India's national helpline for cyber financial fraud. Available 24/7 for immediate assistance.</p>
+        <div class="portal-steps">
+          <div class="portal-step"><span>1</span> Dial 1930</div>
+          <div class="portal-step"><span>2</span> Describe the fraud</div>
+          <div class="portal-step"><span>3</span> Provide transaction details</div>
+          <div class="portal-step"><span>4</span> Follow officer instructions</div>
+        </div>
+        <a href="tel:1930" class="btn btn-danger">📞 Call 1930</a>
+      </div>
+
+      <div class="portal-card">
+        <div class="portal-logo">🏦</div>
+        <h3>Your Bank / Wallet</h3>
+        <p>Contact your bank immediately to freeze the transaction. UPI apps also have in-app reporting.</p>
+        <div class="portal-steps">
+          <div class="portal-step"><span>1</span> Call bank helpline</div>
+          <div class="portal-step"><span>2</span> Block linked cards/UPI</div>
+          <div class="portal-step"><span>3</span> Raise chargeback request</div>
+          <div class="portal-step"><span>4</span> File complaint in writing</div>
+        </div>
+        <div class="bank-numbers">
+          <span>SBI: 1800111109</span><span>HDFC: 18002586161</span><span>ICICI: 18001080</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUICK REPORT FORM -->
+    <div class="quick-report">
+      <h2>📋 Quick Scam Report (Community Database)</h2>
+      <p class="section-sub">Help other users by adding this scam to our community database</p>
+      <form id="reportForm" class="report-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Scam Type *</label>
+            <select name="scamType" required>
+              <option value="">Select type...</option>
+              <option>OTP Scam</option>
+              <option>KYC Scam</option>
+              <option>UPI Fraud</option>
+              <option>Fake Customer Care</option>
+              <option>Lottery/Reward Scam</option>
+              <option>Investment Fraud</option>
+              <option>Phishing Link</option>
+              <option>Refund Scam</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Platform Used</label>
+            <select name="platform">
+              <option value="">Select...</option>
+              <option>SMS</option>
+              <option>WhatsApp</option>
+              <option>Email</option>
+              <option>Phone Call</option>
+              <option>Telegram</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Suspicious UPI ID / Phone / URL</label>
+          <input type="text" name="identifier" placeholder="e.g. kyc.hdfc@paytm or 9876543210" />
+        </div>
+        <div class="form-group">
+          <label>Describe the scam (optional)</label>
+          <textarea name="description" rows="4" placeholder="How did they approach you? What did they ask for?"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Amount Demanded (₹)</label>
+          <input type="number" name="amount" placeholder="0" />
+        </div>
+        <div class="form-check">
+          <input type="checkbox" id="agreeAnon" name="anonymous" checked />
+          <label for="agreeAnon">Submit anonymously (no personal info collected)</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit to Community Database</button>
+      </form>
+      <div id="reportSuccess" class="report-success" style="display:none">
+        <div class="success-icon">✅</div>
+        <h3>Report Submitted!</h3>
+        <p>Thank you for helping protect other Indians from this scam. Your report has been added to our community database.</p>
+        <a href="scan.html" class="btn btn-outline">Scan Another Message</a>
+      </div>
+    </div>
+
+    <!-- SAFETY GUIDE -->
+    <div class="safety-guide">
+      <h2>🛡️ What To Do If You've Been Scammed</h2>
+      <div class="safety-timeline">
+        <div class="timeline-item">
+          <div class="timeline-time">0–30 min</div>
+          <div class="timeline-content urgent">
+            <h4>Immediate Action</h4>
+            <ul>
+              <li>Call 1930 immediately</li>
+              <li>Contact your bank to freeze transactions</li>
+              <li>Change UPI PIN / Net Banking password</li>
+              <li>Don't make any more payments</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">1–24 hrs</div>
+          <div class="timeline-content warning">
+            <h4>File Formal Complaint</h4>
+            <ul>
+              <li>File complaint at cybercrime.gov.in</li>
+              <li>Visit nearest police station</li>
+              <li>Get complaint acknowledgment number</li>
+              <li>Preserve all screenshots and messages</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">1–7 days</div>
+          <div class="timeline-content normal">
+            <h4>Follow Up</h4>
+            <ul>
+              <li>Follow up with bank chargeback</li>
+              <li>Track complaint status online</li>
+              <li>Report on Chakshu portal (TRAI)</li>
+              <li>Alert family and friends</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <footer class="footer">
+    <div class="footer-bottom">
+      <p>© 2024 ScamPay · <a href="index.html">Home</a> · <a href="scan.html">Scan Message</a> · Emergency: <a href="tel:1930">1930</a></p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/report.js"></script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scan Message — ScamPay</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-inner container">
+      <a href="index.html" class="logo">
+        <span class="logo-shield">🛡️</span>
+        <span class="logo-text">Scam<span class="accent">Pay</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="scan.html" class="active">Scan Now</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="report.html">Report Scam</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" title="Toggle dark / light mode">🌙</button>
+        <button class="nav-toggle" id="navToggle" aria-label="Open menu">&#9776;</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>🔍 Scan for Scams</h1>
+      <p>Paste a message, upload a screenshot, or enter a phone / UPI / link to check instantly</p>
+    </div>
+  </div>
+
+  <section class="scan-section container">
+
+    <!-- INPUT TABS -->
+    <div class="scan-tabs">
+      <button class="tab-btn active" data-tab="text">📝 Paste Message</button>
+      <button class="tab-btn" data-tab="screenshot">📷 Upload Screenshot</button>
+      <button class="tab-btn" data-tab="identifier">🔗 Phone / UPI / Link</button>
+    </div>
+
+    <div class="scan-card">
+
+      <!-- TAB: TEXT -->
+      <div class="tab-panel active" id="tab-text">
+        <label class="input-label">Paste SMS, WhatsApp, or Email content</label>
+        <textarea id="msgInput" class="scan-textarea" rows="7" placeholder="e.g. Dear customer, your KYC has expired. Please send ₹499 to kyc@ybl to reactivate your account. Share OTP 7823 to confirm."></textarea>
+        <div class="char-count"><span id="charCount">0</span> characters</div>
+        <div class="sample-msgs">
+          <span class="sample-label">Try a sample:</span>
+          <button class="sample-btn" data-msg="Congratulations! You've won ₹10,00,000 in Lucky Draw. Send ₹500 processing fee to prize@upi. Call 9876543210 now!">Lottery Scam</button>
+          <button class="sample-btn" data-msg="Your HDFC Bank KYC expired. Update now: bit.ly/hdfc-kyc or your account will be blocked in 24 hours. Share OTP to verify.">KYC Phishing</button>
+          <button class="sample-btn" data-msg="Hi, I'm from PayTM support. Your account shows suspicious activity. Please share your OTP 4521 to block the transaction.">OTP Fraud</button>
+          <button class="sample-btn" data-msg="Dear customer, to receive your ₹2500 refund, scan this QR code or enter UPI PIN to complete transaction.">Refund Scam</button>
+        </div>
+      </div>
+
+      <!-- TAB: SCREENSHOT -->
+      <div class="tab-panel" id="tab-screenshot">
+        <label class="input-label">Upload a screenshot of the suspicious message</label>
+        <div class="upload-zone" id="uploadZone">
+          <div class="upload-icon">📷</div>
+          <p>Drag &amp; drop your screenshot here</p>
+          <p class="upload-sub">or click to browse (PNG, JPG, WEBP)</p>
+          <input type="file" id="fileInput" accept="image/*" hidden />
+          <button class="btn btn-outline" onclick="document.getElementById('fileInput').click()">Choose File</button>
+        </div>
+        <div class="upload-preview" id="uploadPreview" style="display:none">
+          <img id="previewImg" src="" alt="Preview" />
+          <button class="btn btn-sm btn-outline" id="clearImg">✕ Remove</button>
+        </div>
+        <div class="ocr-note">📌 Text will be extracted automatically from the image (OCR simulation)</div>
+      </div>
+
+      <!-- TAB: IDENTIFIER -->
+      <div class="tab-panel" id="tab-identifier">
+        <label class="input-label">Enter a suspicious identifier</label>
+        <div class="id-input-group">
+          <select id="idType" class="id-select">
+            <option value="upi">UPI ID (abc@paytm)</option>
+            <option value="phone">Phone Number</option>
+            <option value="email">Email Address</option>
+            <option value="url">URL / Link</option>
+          </select>
+          <input type="text" id="idValue" class="id-input" placeholder="e.g. rewards@okaxis" />
+        </div>
+        <div class="id-examples">
+          <span class="sample-label">Examples:</span>
+          <button class="sample-btn" data-id="upi" data-val="kyc.verify999@ybl">kyc.verify999@ybl</button>
+          <button class="sample-btn" data-id="url" data-val="http://hdfc-bank-update.tk/login">Fake Bank URL</button>
+          <button class="sample-btn" data-id="phone" data-val="9999999999">Suspicious No.</button>
+        </div>
+      </div>
+
+      <!-- SCAN BUTTON -->
+      <div class="scan-action">
+        <button class="btn btn-primary btn-xl" id="scanBtn">
+          <span id="scanBtnText">🔍 Analyze for Scams</span>
+          <span id="scanSpinner" class="spinner" style="display:none"></span>
+        </button>
+        <p class="scan-privacy">🔒 Your data is never stored. Analysis is done locally.</p>
+      </div>
+
+    </div>
+
+    <!-- RESULT PANEL (hidden until scan) -->
+    <div id="resultPanel" style="display:none"></div>
+
+    <!-- WHAT WE EXTRACT -->
+    <div class="extract-info">
+      <h3>What ScamPay Extracts &amp; Checks</h3>
+      <div class="extract-grid">
+        <div class="extract-item"><span>💳</span><b>UPI ID</b><p>Checks against known fraudulent payment handles</p></div>
+        <div class="extract-item"><span>₹</span><b>Amount</b><p>Flags unusually urgent payment requests</p></div>
+        <div class="extract-item"><span>📞</span><b>Phone Number</b><p>Cross-references reported scam numbers</p></div>
+        <div class="extract-item"><span>📧</span><b>Email</b><p>Detects spoofed or suspicious sender domains</p></div>
+        <div class="extract-item"><span>🔗</span><b>URLs/Links</b><p>Checks for phishing domains and URL shorteners</p></div>
+        <div class="extract-item"><span>🔑</span><b>Keywords</b><p>OTP, KYC, PIN, urgent, reward, blocked, verify</p></div>
+      </div>
+    </div>
+
+  </section>
+
+  <footer class="footer">
+    <div class="footer-bottom">
+      <p>© 2024 ScamPay · <a href="index.html">Home</a> · <a href="report.html">Report Scam</a> · Emergency: <a href="tel:1930">1930</a></p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/scanner.js"></script>
+</body>
+</html>

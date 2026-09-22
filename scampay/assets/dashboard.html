@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — ScamPay</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-inner container">
+      <a href="index.html" class="logo">
+        <span class="logo-shield">🛡️</span>
+        <span class="logo-text">Scam<span class="accent">Pay</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="scan.html">Scan Now</a></li>
+        <li><a href="dashboard.html" class="active">Dashboard</a></li>
+        <li><a href="report.html">Report Scam</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" title="Toggle dark / light mode">🌙</button>
+        <button class="nav-toggle" id="navToggle" aria-label="Open menu">&#9776;</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>📊 My Dashboard</h1>
+      <p>Your scan history and protection summary</p>
+    </div>
+  </div>
+
+  <section class="container dashboard-section">
+
+    <!-- SUMMARY CARDS -->
+    <div class="dash-summary">
+      <div class="dash-card dash-total">
+        <div class="dash-num" id="totalScans">0</div>
+        <div class="dash-label">Total Scans</div>
+      </div>
+      <div class="dash-card dash-scam">
+        <div class="dash-num" id="scamsFound">0</div>
+        <div class="dash-label">Scams Found</div>
+      </div>
+      <div class="dash-card dash-safe">
+        <div class="dash-num" id="safeMsgs">0</div>
+        <div class="dash-label">Safe Messages</div>
+      </div>
+      <div class="dash-card dash-saved">
+        <div class="dash-num" id="moneySaved">₹0</div>
+        <div class="dash-label">Est. Saved</div>
+      </div>
+    </div>
+
+    <!-- RISK BREAKDOWN -->
+    <div class="dash-row">
+      <div class="dash-panel">
+        <h3>Risk Level Breakdown</h3>
+        <div class="risk-bars" id="riskBars">
+          <div class="risk-bar-row">
+            <span class="risk-label-sm risk-red">🔴 Very High</span>
+            <div class="risk-bar-track"><div class="risk-bar-fill fill-red" id="barVH" style="width:0%"></div></div>
+            <span class="risk-count" id="countVH">0</span>
+          </div>
+          <div class="risk-bar-row">
+            <span class="risk-label-sm risk-orange">🟠 High</span>
+            <div class="risk-bar-track"><div class="risk-bar-fill fill-orange" id="barH" style="width:0%"></div></div>
+            <span class="risk-count" id="countH">0</span>
+          </div>
+          <div class="risk-bar-row">
+            <span class="risk-label-sm risk-yellow">🟡 Medium</span>
+            <div class="risk-bar-track"><div class="risk-bar-fill fill-yellow" id="barM" style="width:0%"></div></div>
+            <span class="risk-count" id="countM">0</span>
+          </div>
+          <div class="risk-bar-row">
+            <span class="risk-label-sm risk-green">🟢 Low</span>
+            <div class="risk-bar-track"><div class="risk-bar-fill fill-green" id="barL" style="width:0%"></div></div>
+            <span class="risk-count" id="countL">0</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dash-panel">
+        <h3>Top Scam Types Detected</h3>
+        <div id="scamTypesList" class="scam-types-list">
+          <div class="empty-state">No scans yet. <a href="scan.html">Start scanning →</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HISTORY TABLE -->
+    <div class="dash-panel history-panel">
+      <div class="history-header">
+        <h3>Scan History</h3>
+        <div class="history-controls">
+          <input type="text" id="historySearch" placeholder="🔍 Search history..." class="history-search" />
+          <button class="btn btn-sm btn-outline" id="clearHistory">🗑️ Clear All</button>
+        </div>
+      </div>
+      <div id="historyList" class="history-list">
+        <div class="empty-state" id="emptyHistory">
+          <div class="empty-icon">🔍</div>
+          <p>No scan history yet.</p>
+          <a href="scan.html" class="btn btn-primary">Scan Your First Message</a>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <footer class="footer">
+    <div class="footer-bottom">
+      <p>© 2024 ScamPay · <a href="index.html">Home</a> · <a href="report.html">Report Scam</a> · Emergency: <a href="tel:1930">1930</a></p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/dashboard.js"></script>
+</body>
+</html>
